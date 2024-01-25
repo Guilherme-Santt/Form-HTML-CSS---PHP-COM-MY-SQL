@@ -2,7 +2,7 @@
 * { 
   margin: 0;
   padding: 0;
-  font-family:Arial, Helvetica, sans-serif;
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
 }
 /* FUNDO DO BODY */
 body {
@@ -61,8 +61,8 @@ textarea{
     height: 45px;
 }
 .form-header p{
-    color: #673ab7;
-    border-bottom: 2px solid #673ab7;
+    color: #FF0000;
+    border-bottom: 2px solid #FF0000;;
     width: 100px;
     text-align: center;
     margin: 0 auto;
@@ -110,7 +110,7 @@ textarea{
 }
 /* CLASS BUTTON */
 .btn-submit{
-    background-color: #673ab7;
+    background-color: #FF0000;;
     color: white;
     border: 2px solid transparent;
     width: 150px;
@@ -121,6 +121,6 @@ textarea{
 }
 .btn-submit:hover{
     background-color: #FFF;
-    border-color: #673ab7;
-    color: #673ab7;
+    border-color: #FF0000;;
+    color:  #FF0000;
 }

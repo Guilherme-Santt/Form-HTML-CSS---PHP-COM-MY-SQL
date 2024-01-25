@@ -1,4 +1,4 @@
-<!-- <?php
+<<?php
 $titulo = $_POST['tittle'];
 $preco = $_POST['price'];
 $descricao = $_POST['description'];
@@ -9,7 +9,9 @@ $data_compra = $_POST['purchase_date'];
 $cambio = $_POST['gear'];
 $opcionais = $_POST['optional[]'];
 //$images = $_FILES['images']
-?> -->
+
+
+?> 
 <!DOCTYPE html>
 <html lang="en">
 <head>
