@@ -1,4 +1,5 @@
-<<?php
+<?php
+if(count($_POST) > 0){
 $titulo = $_POST['tittle'];
 $preco = $_POST['price'];
 $descricao = $_POST['description'];
@@ -6,9 +7,33 @@ $marca = $_POST['brand'];
 $modelo = $_POST['model'];
 $km = $_POST['mileage'];
 $data_compra = $_POST['purchase_date'];
-$cambio = $_POST['gear'];
-$opcionais = $_POST['optional[]'];
+$freio = $_POST['freio'];
+$opcionais = $_POST['optional'];
 //$images = $_FILES['images']
+$erro = '';
+
+var_dump($data_compra);
+// if(empty($titulo) || strlen($titulo) > 30)
+//     $erro = "TITULO OBRIGATÓRIO";
+// if(empty($preco))
+//     $erro = "PREÇO OBRIGATÓRIO";
+// if(empty($descricao))
+// $descricao = "Não informada";
+// if(empty($marca))
+// $erro = "MARCA OBRIGATÓRIA";
+// if(empty($modelo))
+// $erro = "MODELO OBRIGATÓRIO";
+// if(empty($km))
+//     $erro = "KILOMETRAGEM OBRIGATÓRIA";
+// if(empty($data_compra))
+//     $erro = "DATA DE COMPRA OBRIGATÓRIA";
+// if(empty($freio))
+//     $erro = "FREIO OBRIGATÓRIO";
+// if(!empty($freio) && strlen($freio) > 150)
+//     $erro = "CAMPO COM CARACTERES ACIMA DO PERMITIDO";
+    
+
+}
 
 
 ?> 
@@ -125,13 +150,13 @@ $opcionais = $_POST['optional[]'];
                     <!-- DIV INPUT TIPO DE CÂMBIO-->
                     <div class="box-input">
                         <p>Tipo do freio</p>
-                        <input type="radio" id="manual" name="gear" velue="Disco">
+                        <input type="radio" id="manual" name="freio" velue="Disco">
                         <label for="manual">Disco</span></label>
 
-                        <input type="radio" id="auto" name="gear" velue="ABS">
+                        <input type="radio" id="auto" name="freio" velue="ABS">
                         <label for="auto">ABS</span></label>
 
-                        <input type="radio" id="auto" name="gear" velue="Tambor">
+                        <input type="radio" id="auto" name="freio" velue="Tambor">
                         <label for="auto">Tambor</span></label>
                     </div>
                     <!-- DIV CHECK BOX OPCIONAIS -->
@@ -141,7 +166,7 @@ $opcionais = $_POST['optional[]'];
                             <li>
                                 <!-- CHECK BOX AIRBAG ->  -->
                                 <input type="checkbox"
-                                name="optional[]"
+                                name="optional"
                                 value="Protetor de carenagem"
                                 id="Protetor_carenagem"
                                 >
@@ -150,7 +175,7 @@ $opcionais = $_POST['optional[]'];
                             <li>
                                 <!-- CHECK BOX ALARME -->
                                 <input type="checkbox"
-                                name="optional[]"
+                                name="optional"
                                 value="Imobilizador de moto"
                                 id="Imobolizador"
                                 >
@@ -159,7 +184,7 @@ $opcionais = $_POST['optional[]'];
                             <li>
                                 <!-- CHECK BOX AR CONDICIONADO -->
                                 <input type="checkbox"
-                                name="optional[]"
+                                name="optional"
                                 value="Protetor de manete"
                                 id="Protetor_manete"
                                 >
@@ -168,7 +193,7 @@ $opcionais = $_POST['optional[]'];
                             <li>
                                 <!-- CHECK BOX CÂMERA DE RÉ -->
                                 <input type="checkbox"
-                                name="optional[]"
+                                name="optional"
                                 value="Suporte para GPS"
                                 id="SuporteGPS"
                                 >
@@ -177,7 +202,7 @@ $opcionais = $_POST['optional[]'];
                             <li>
                                 <!-- CHECK BOX ASSISTENTE DE PÍSTA -->
                                 <input type="checkbox"
-                                name="optional[]"
+                                name="optional"
                                 value="Carregador solar"
                                 id="carregador_solar"
                                 >
@@ -186,7 +211,7 @@ $opcionais = $_POST['optional[]'];
                             <li>
                                 <!-- CHECK BOX KEYLESS -->
                                 <input type="checkbox"
-                                name="optional[]"
+                                name="optional"
                                 value="Baú"
                                 id="bau"
                                 >
@@ -195,7 +220,7 @@ $opcionais = $_POST['optional[]'];
                             <li>
                                 <!-- CHECK BOX SMARTPHONE -->
                                 <input type="checkbox"
-                                name="optional[]"
+                                name="optional"
                                 value="Bolsa magnética "
                                 id="Bolsa_magnetica"
                                 >
@@ -204,7 +229,7 @@ $opcionais = $_POST['optional[]'];
                             <li>
                                 <!-- CHECK BOX BANCO DE COURO -->
                                 <input type="checkbox"
-                                name="optional[]"
+                                name="optional"
                                 value="Cavalete de moto"
                                 id="cavalete"
                                 >
