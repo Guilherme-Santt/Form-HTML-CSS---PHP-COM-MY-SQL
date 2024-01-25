@@ -1,4 +1,5 @@
 <?php
+include('./conexao/conexao.php');
 if(count($_POST) > 0){
 $titulo = $_POST['tittle'];
 $preco = $_POST['price'];
@@ -44,8 +45,8 @@ var_dump($data_compra);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Anuncie seu veiculo</title>
 </head>
-<link rel="stylesheet" href="css/style.css">
-<body>
+<link rel="stylesheet" href="../css/style.css">
+<body>  
     <div class="container">
         <!-- DIVISÃO DO HEADER -->
         <div class="header">
