@@ -6,6 +6,8 @@ $marca = $_POST['brand'];
 $modelo = $_POST['model'];
 $km = $_POST['mileage'];
 $data_compra = $_POST['purchase_date'];
+$cambio = $_POST['gear'];
+$opcionais = $_POST['optional[]'];
 ?> -->
 <!DOCTYPE html>
 <html lang="en">
@@ -117,7 +119,104 @@ $data_compra = $_POST['purchase_date'];
                         required
                         >
                     </div>
-                    <input type="submit" value="Enviar" /> 
+                    <!-- DIV INPUT TIPO DE CÂMBIO-->
+                    <div class="box-input">
+                        <input type="radio" id="manual" name="gear" velue="Manual">
+                        <label for="manual">Manual</span></label>
+
+                        <input type="radio" id="auto" name="gear" velue="Automático">
+                        <label for="auto">Automático</span></label>
+                    </div>
+                    <!-- DIV CHECK BOX OPCIONAIS -->
+                    <div class="optional-box">
+                        <p>Opcionais</p>
+                        <ul class="option-list">
+                            <li>
+                                <!-- CHECK BOX AIRBAG ->  -->
+                                <input type="checkbox"
+                                name="optional[]"
+                                value="Airbag"
+                                id="Airbag"
+                                >
+                                <label for="airbag">Airbag</label>
+                            </li>
+                            <li>
+                                <!-- CHECK BOX ALARME -->
+                                <input type="checkbox"
+                                name="optional[]"
+                                value="Alarme"
+                                id="Alarme"
+                                >
+                                <label for="alarme">Alarme</label>
+                            </li>
+                            <li>
+                                <!-- CHECK BOX AR CONDICIONADO -->
+                                <input type="checkbox"
+                                name="optional[]"
+                                value="Ar condicionado"
+                                id="Ar condicionado"
+                                >
+                                <label for="Ac">Ar condicionado</label>
+                            </li>
+                            <li>
+                                <!-- CHECK BOX CÂMERA DE RÉ -->
+                                <input type="checkbox"
+                                name="optional[]"
+                                value="Câmera de ré"
+                                id="Câmera de ré"
+                                >
+                                <label for="reverse_camera">Câmera de ré</label>
+                            </li>
+                            <li>
+                                <!-- CHECK BOX ASSISTENTE DE PÍSTA -->
+                                <input type="checkbox"
+                                name="optional[]"
+                                value="Assistente de pista"
+                                id="lane_assist"
+                                >
+                                <label for="reverse_camera">Assistente de Pista</label>
+                            </li>
+                            <li>
+                                <!-- CHECK BOX KEYLESS -->
+                                <input type="checkbox"
+                                name="optional[]"
+                                value="Partida Keyless"
+                                id="Keyless"
+                                >
+                                <label for="reverse_camera">Partida Keyless</label>
+                            </li>
+                            <li>
+                                <!-- CHECK BOX SMARTPHONE -->
+                                <input type="checkbox"
+                                name="optional[]"
+                                value="Integração com celular"
+                                id="smartphone"
+                                >
+                                <label for="reverse_camera">Integração com celular</label>
+                            </li>
+                            <li>
+                                <!-- CHECK BOX BANCO DE COURO -->
+                                <input type="checkbox"
+                                name="optional[]"
+                                value="Banco de couro"
+                                id="banco"
+                                >
+                                <label for="banco">Banco de couro</label>
+                            </li> 
+                        </ul>
+                    </div>
+                    <!-- INPUT FILE DE IMAGES -->
+                    <div class="box-input">
+                        <input 
+                        type="file"
+                        multiple 
+                        accept="image/png, image/jpg"
+                        id="images"
+                        name="images"
+                        required
+                        >
+                    </div>
+                        <input type="submit" value="Enviar" /> 
                 </form>    
             </div>
         </div>
