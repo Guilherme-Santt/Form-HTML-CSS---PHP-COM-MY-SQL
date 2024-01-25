@@ -1,3 +1,12 @@
+<!-- <?php
+$titulo = $_POST['tittle'];
+$preco = $_POST['price'];
+$descricao = $_POST['description'];
+$marca = $_POST['brand'];
+$modelo = $_POST['model'];
+$km = $_POST['mileage'];
+$data_compra = $_POST['purchase_date'];
+?> -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,7 +33,7 @@
                 <p>
                     Descreve as característicar e marque os opcionais que ele possui
                 </p>
-                <form>    
+                <form method="POST" action="">    
                     <!-- DIV INPUT TITULO -->
                     <div class="box-input">
                         <label for="Tittle">Título do anúncio <span class="required-field">*</span></label>
