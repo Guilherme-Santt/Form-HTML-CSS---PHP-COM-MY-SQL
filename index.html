@@ -8,6 +8,7 @@ $km = $_POST['mileage'];
 $data_compra = $_POST['purchase_date'];
 $cambio = $_POST['gear'];
 $opcionais = $_POST['optional[]'];
+//$images = $_FILES['images']
 ?> -->
 <!DOCTYPE html>
 <html lang="en">
@@ -31,14 +32,14 @@ $opcionais = $_POST['optional[]'];
             </div>
             <!-- BODY DO FORMULÁRIO, TITULO & FORMULÁRIO -->
             <div class="form-body">
-                <h1 class="form-tle">Venda fácil seu carro!</h1>
+                <h1 class="form-tittle">Anuncie aqui seu veículo!</h1>
                 <p>
-                    Descreve as característicar e marque os opcionais que ele possui
+                    Descreve as características e marque os opcionais que ele possui
                 </p>
                 <form method="POST" action="">    
                     <!-- DIV INPUT TITULO -->
                     <div class="box-input">
-                        <label for="Tittle">Título do anúncio <span class="required-field">*</span></label>
+                        <label for="Tittle">Título do anúncio <span class="required-filed">*</span></label>
                         <input
                         type="text" 
                         name="tittle" 
@@ -52,7 +53,7 @@ $opcionais = $_POST['optional[]'];
                     </div>
                     <!-- DIV INPUT PREÇO -->
                     <div class="box-input">
-                        <label for="price">Título do preço <span class="required-field">*</span></label>
+                        <label for="price">Título do preço <span class="required-filed">*</span></label>
                         <input
                         type="number" 
                         name="price" 
@@ -64,7 +65,7 @@ $opcionais = $_POST['optional[]'];
                     </div>
                     <!-- DIV INPUT DESCRIÇÃO -->
                     <div class="box-input">
-                        <label for="description">Descrição <span class="required-field">*</span></label>
+                        <label for="description">Descrição <span class="required-filed">*</span></label>
                         <textarea 
                             name="description" 
                             id="description" 
@@ -74,7 +75,7 @@ $opcionais = $_POST['optional[]'];
                     </div>
                     <!-- DIV INPUT MARCA -->
                     <div class="box-input">
-                        <label for="brand">Marca <span class="required-field">*</span></label>
+                        <label for="brand">Marca <span class="required-filed">*</span></label>
                         <input
                         type="text" 
                         name="brand" 
@@ -86,7 +87,7 @@ $opcionais = $_POST['optional[]'];
                     </div>
                     <!-- DIV INPUT MODELO -->
                     <div class="box-input">
-                        <label for="model">Modelo <span class="required-field">*</span></label>
+                        <label for="model">Modelo <span class="required-filed">*</span></label>
                         <input
                         type="text" 
                         name="model" 
@@ -98,7 +99,7 @@ $opcionais = $_POST['optional[]'];
                     </div>
                     <!-- DIV INPUT KILOMETRAGEM -->
                     <div class="box-input">
-                        <label for="mileage">Kilometragem <span class="required-field">*</span></label>
+                        <label for="mileage">Kilometragem <span class="required-filed">*</span></label>
                         <input
                         type="number" 
                         name="mileage" 
@@ -110,7 +111,7 @@ $opcionais = $_POST['optional[]'];
                     </div>
                     <!-- DIV INPUT DATA DE COMPRA -->
                     <div class="box-input">
-                        <label for="purchase_date">Data de compra <span class="required-field">*</span></label>
+                        <label for="purchase_date">Data de compra <span class="required-filed">*</span></label>
                         <input
                         type="date" 
                         name="purchase_date" 
@@ -121,6 +122,7 @@ $opcionais = $_POST['optional[]'];
                     </div>
                     <!-- DIV INPUT TIPO DE CÂMBIO-->
                     <div class="box-input">
+                        <p>Tipo do câmbio</p>
                         <input type="radio" id="manual" name="gear" velue="Manual">
                         <label for="manual">Manual</span></label>
 
@@ -213,7 +215,6 @@ $opcionais = $_POST['optional[]'];
                         accept="image/png, image/jpg"
                         id="images"
                         name="images"
-                        required
                         >
                     </div>
                         <input type="submit" class="btn-submit" value="Enviar" /> 
