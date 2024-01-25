@@ -22,7 +22,7 @@ $opcionais = $_POST['optional[]'];
     <div class="container">
         <!-- DIVISÃO DO HEADER -->
         <div class="header">
-            <h3>Cadastre seu veiculo para vender mais rápido!</h3>
+            <h3>Anuncie aqui as informações de seu veículo</h3>
         </div>
         <!-- DIVISÃO DO CONTAINER -> FORMULÁRIO-->
         <div class="form-container">
@@ -32,20 +32,20 @@ $opcionais = $_POST['optional[]'];
             </div>
             <!-- BODY DO FORMULÁRIO, TITULO & FORMULÁRIO -->
             <div class="form-body">
-                <h1 class="form-tittle">Anuncie aqui seu veículo!</h1>
+                <h1 class="form-tittle">Anuncie aqui sua motocicleta!</h1>
                 <p>
-                    Descreve as características e marque os opcionais que ele possui
+                    Descreva informações de sua motocicleta 
                 </p>
                 <form method="POST" action="">    
                     <!-- DIV INPUT TITULO -->
                     <div class="box-input">
-                        <label for="Tittle">Título do anúncio <span class="required-filed">*</span></label>
+                        <label for="Tittle">Anúncio <span class="required-filed">*</span></label>
                         <input
                         type="text" 
                         name="tittle" 
                         id="tittle" 
                         class="block" 
-                        placeholder="Um titulo para anunciar sei veículo"
+                        placeholder="Um titulo para anunciar seu veículo"
                         minlength="1"
                         maxlength="30"
                         required
@@ -53,7 +53,7 @@ $opcionais = $_POST['optional[]'];
                     </div>
                     <!-- DIV INPUT PREÇO -->
                     <div class="box-input">
-                        <label for="price">Título do preço <span class="required-filed">*</span></label>
+                        <label for="price">Preço <span class="required-filed">*</span></label>
                         <input
                         type="number" 
                         name="price" 
@@ -122,12 +122,15 @@ $opcionais = $_POST['optional[]'];
                     </div>
                     <!-- DIV INPUT TIPO DE CÂMBIO-->
                     <div class="box-input">
-                        <p>Tipo do câmbio</p>
-                        <input type="radio" id="manual" name="gear" velue="Manual">
-                        <label for="manual">Manual</span></label>
+                        <p>Tipo do freio</p>
+                        <input type="radio" id="manual" name="gear" velue="Disco">
+                        <label for="manual">Disco</span></label>
 
-                        <input type="radio" id="auto" name="gear" velue="Automático">
-                        <label for="auto">Automático</span></label>
+                        <input type="radio" id="auto" name="gear" velue="ABS">
+                        <label for="auto">ABS</span></label>
+
+                        <input type="radio" id="auto" name="gear" velue="Tambor">
+                        <label for="auto">Tambor</span></label>
                     </div>
                     <!-- DIV CHECK BOX OPCIONAIS -->
                     <div class="optional-box">
@@ -137,73 +140,73 @@ $opcionais = $_POST['optional[]'];
                                 <!-- CHECK BOX AIRBAG ->  -->
                                 <input type="checkbox"
                                 name="optional[]"
-                                value="Airbag"
-                                id="Airbag"
+                                value="Protetor de carenagem"
+                                id="Protetor_carenagem"
                                 >
-                                <label for="airbag">Airbag</label>
+                                <label for="airbag">Protetor de carenagem</label>
                             </li>
                             <li>
                                 <!-- CHECK BOX ALARME -->
                                 <input type="checkbox"
                                 name="optional[]"
-                                value="Alarme"
-                                id="Alarme"
+                                value="Imobilizador de moto"
+                                id="Imobolizador"
                                 >
-                                <label for="alarme">Alarme</label>
+                                <label for="alarme">Imobilizador de moto</label>
                             </li>
                             <li>
                                 <!-- CHECK BOX AR CONDICIONADO -->
                                 <input type="checkbox"
                                 name="optional[]"
-                                value="Ar condicionado"
-                                id="Ar condicionado"
+                                value="Protetor de manete"
+                                id="Protetor_manete"
                                 >
-                                <label for="Ac">Ar condicionado</label>
+                                <label for="Ac">Protetor de manete</label>
                             </li>
                             <li>
                                 <!-- CHECK BOX CÂMERA DE RÉ -->
                                 <input type="checkbox"
                                 name="optional[]"
-                                value="Câmera de ré"
-                                id="Câmera de ré"
+                                value="Suporte para GPS"
+                                id="SuporteGPS"
                                 >
-                                <label for="reverse_camera">Câmera de ré</label>
+                                <label for="reverse_camera">Suporte para GPS</label>
                             </li>
                             <li>
                                 <!-- CHECK BOX ASSISTENTE DE PÍSTA -->
                                 <input type="checkbox"
                                 name="optional[]"
-                                value="Assistente de pista"
-                                id="lane_assist"
+                                value="Carregador solar"
+                                id="carregador_solar"
                                 >
-                                <label for="reverse_camera">Assistente de Pista</label>
+                                <label for="reverse_camera">Carregador solar</label>
                             </li>
                             <li>
                                 <!-- CHECK BOX KEYLESS -->
                                 <input type="checkbox"
                                 name="optional[]"
-                                value="Partida Keyless"
-                                id="Keyless"
+                                value="Baú"
+                                id="bau"
                                 >
-                                <label for="reverse_camera">Partida Keyless</label>
+                                <label for="reverse_camera">Baú</label>
                             </li>
                             <li>
                                 <!-- CHECK BOX SMARTPHONE -->
                                 <input type="checkbox"
                                 name="optional[]"
-                                value="Integração com celular"
-                                id="smartphone"
+                                value="Bolsa magnética "
+                                id="Bolsa_magnetica"
                                 >
-                                <label for="reverse_camera">Integração com celular</label>
+                                <label for="reverse_camera">Bolsa magnética </label>
                             </li>
                             <li>
                                 <!-- CHECK BOX BANCO DE COURO -->
                                 <input type="checkbox"
                                 name="optional[]"
-                                value="Banco de couro"
-                                id="banco"
+                                value="Cavalete de moto"
+                                id="cavalete"
                                 >
-                                <label for="banco">Banco de couro</label>
+                                <label for="banco">Cavalete de moto</label>
                             </li> 
                         </ul>
                     </div>
