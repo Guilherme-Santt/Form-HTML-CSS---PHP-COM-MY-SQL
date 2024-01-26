@@ -9,34 +9,55 @@ $modelo = $_POST['model'];
 $km = $_POST['mileage'];
 $data_compra = $_POST['purchase_date'];
 $freio = $_POST['freio'];
-$opcionais = $_POST['optional'];
+if(!empty($_POST['optional'])){
+$opcionais = $_POST["optional"] ? $_POST['optional'] : array();
+    foreach($opcionais as $o){
+        $o;
+        
+    }
+    }else{
+        $o = "Sem opcionais";   
+    }
 //$images = $_FILES['images']
-$erro = '';
+$alert = '';
 
-var_dump($data_compra);
-// if(empty($titulo) || strlen($titulo) > 30)
-//     $erro = "TITULO OBRIGATÓRIO";
-// if(empty($preco))
-//     $erro = "PREÇO OBRIGATÓRIO";
-// if(empty($descricao))
-// $descricao = "Não informada";
-// if(empty($marca))
-// $erro = "MARCA OBRIGATÓRIA";
-// if(empty($modelo))
-// $erro = "MODELO OBRIGATÓRIO";
-// if(empty($km))
-//     $erro = "KILOMETRAGEM OBRIGATÓRIA";
-// if(empty($data_compra))
-//     $erro = "DATA DE COMPRA OBRIGATÓRIA";
-// if(empty($freio))
-//     $erro = "FREIO OBRIGATÓRIO";
-// if(!empty($freio) && strlen($freio) > 150)
-//     $erro = "CAMPO COM CARACTERES ACIMA DO PERMITIDO";
-    
+print_r($opcionais);
+print_r($o);
+if(empty($titulo) || strlen($titulo) > 30)
+    $alert = "TITULO OBRIGATÓRIO";
+if(empty($preco))
+    $alert = "PREÇO OBRIGATÓRIO";
+if(empty($descricao))
+    $descricao = "Não informada";
+if(empty($marca))
+    $alert = "MARCA OBRIGATÓRIA";
+if(empty($modelo))
+    $alert = "MODELO OBRIGATÓRIO";
+if(empty($km))
+    $alert = "KILOMETRAGEM OBRIGATÓRIA";
+if(empty($data_compra))
+    $alert = "DATA DE COMPRA OBRIGATÓRIA";
+if(strlen($data_compra) > 10)
+    $alert = "DATA DE COMPRA DEVE SEGUIR O PADRÃO DIA/MÊS/ANO";
+if(empty($freio))
+    $alert = "FREIO OBRIGATÓRIO";
+if(!empty($freio) && strlen($freio) > 150)
+    $alert = "CAMPO COM CARACTERES ACIMA DO PERMITIDO";
+if($alert){
+    }else{
+        $sql_code = "INSERT INTO informacoesmotocicleta
+            (titulo, preco, descricao, marca, modelo, data_compra, freio, km, data, opcionais) VALUES
+            ('$titulo','$preco','$descricao','$marca','$modelo', '$data_compra', '$freio', '$km', NOW(), '$o')";
+        $sql_query = $mysqli->query($sql_code);
+        var_dump($o);
+        if($sql_query)
+            $alert = "DADOS INSERIDOS COM SUCESSO";
+        else
+            $alert = "ERRO AO INSERIR DADOS";
+    } 
+
 
 }
-
-
 ?> 
 <!DOCTYPE html>
 <html lang="en">
@@ -142,6 +163,8 @@ var_dump($data_compra);
                         <label for="purchase_date">Data de compra <span class="required-filed">*</span></label>
                         <input
                         type="date" 
+                        minlength="10"
+                        maxlength="10"
                         name="purchase_date" 
                         id="purchase_date" 
                         class="block" 
@@ -167,7 +190,7 @@ var_dump($data_compra);
                             <li>
                                 <!-- CHECK BOX AIRBAG ->  -->
                                 <input type="checkbox"
-                                name="optional"
+                                name="optional[]"
                                 value="Protetor de carenagem"
                                 id="Protetor_carenagem"
                                 >
@@ -176,7 +199,7 @@ var_dump($data_compra);
                             <li>
                                 <!-- CHECK BOX ALARME -->
                                 <input type="checkbox"
-                                name="optional"
+                                name="optional[]"
                                 value="Imobilizador de moto"
                                 id="Imobolizador"
                                 >
@@ -185,7 +208,7 @@ var_dump($data_compra);
                             <li>
                                 <!-- CHECK BOX AR CONDICIONADO -->
                                 <input type="checkbox"
-                                name="optional"
+                                name="optional[]"
                                 value="Protetor de manete"
                                 id="Protetor_manete"
                                 >
@@ -194,7 +217,7 @@ var_dump($data_compra);
                             <li>
                                 <!-- CHECK BOX CÂMERA DE RÉ -->
                                 <input type="checkbox"
-                                name="optional"
+                                name="optional[]"
                                 value="Suporte para GPS"
                                 id="SuporteGPS"
                                 >
@@ -203,7 +226,7 @@ var_dump($data_compra);
                             <li>
                                 <!-- CHECK BOX ASSISTENTE DE PÍSTA -->
                                 <input type="checkbox"
-                                name="optional"
+                                name="optional[]"
                                 value="Carregador solar"
                                 id="carregador_solar"
                                 >
@@ -212,7 +235,7 @@ var_dump($data_compra);
                             <li>
                                 <!-- CHECK BOX KEYLESS -->
                                 <input type="checkbox"
-                                name="optional"
+                                name="optional[]"
                                 value="Baú"
                                 id="bau"
                                 >
@@ -221,7 +244,7 @@ var_dump($data_compra);
                             <li>
                                 <!-- CHECK BOX SMARTPHONE -->
                                 <input type="checkbox"
-                                name="optional"
+                                name="optional[]"
                                 value="Bolsa magnética "
                                 id="Bolsa_magnetica"
                                 >
@@ -230,7 +253,7 @@ var_dump($data_compra);
                             <li>
                                 <!-- CHECK BOX BANCO DE COURO -->
                                 <input type="checkbox"
-                                name="optional"
+                                name="optional[]"
                                 value="Cavalete de moto"
                                 id="cavalete"
                                 >
@@ -248,7 +271,11 @@ var_dump($data_compra);
                         name="images"
                         >
                     </div>
-                        <input type="submit" class="btn-submit" value="Enviar" /> 
+                        <input type="submit" class="btn-submit" value="Enviar" /> <br>
+                        <?php
+                        if(isset($alert))
+                            echo '<p style="color:red">' . $alert . '</p>';
+                        ?>
                 </form>    
             </div>
         </div>
