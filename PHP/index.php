@@ -54,14 +54,14 @@ if(count($_POST) > 0){
     $novoNomeDoArquivo = uniqid();
     $extensao = strtolower(pathinfo($nomeDoArquivo, PATHINFO_EXTENSION)); 
     if($extensao != 'jpg')
-        die("TIPO DE ARQUIV NÃO SUPORTADO");
+        die("TIPO DE ARQUIVO NÃO SUPORTADO");
 
     $path =  $pasta . $novoNomeDoArquivo . "." . $extensao;
     $deu_certo = move_uploaded_file($arquivo['tmp_name'], $path);
 
     if($deu_certo){
         $sql_code = "INSERT INTO informacoesmotocicleta
-            (titulo,    preco,   descricao,   marca,    modelo, data_compra,    freio,      km, data, opcionais, path, nome_arquivo) VALUES
+            (titulo, preco, descricao, marca, modelo, data_compra, freio, km, data, opcionais, path, nome_arquivo) VALUES
             ('$titulo','$preco','$descricao','$marca','$modelo', '$data_compra', '$freio', '$km', NOW(), '$opcionaisstring', '$path', '$nomeDoArquivo')";
 
         $sql_query = $mysqli->query($sql_code);
@@ -71,7 +71,7 @@ if(count($_POST) > 0){
             $alert = "ERRO AO INSERIR DADOS";
             var_dump(($sql_code));
         } 
-}
+    }
 }
     ?> 
 <!DOCTYPE html>
