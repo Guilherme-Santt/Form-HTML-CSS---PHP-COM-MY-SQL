@@ -1,82 +1,82 @@
 <?php
 include('./conexao/conexao.php');
 if(count($_POST) > 0){
-$titulo = $_POST['tittle'];
-$preco = $_POST['price'];
-$descricao = $_POST['description'];
-$marca = $_POST['brand'];
-$modelo = $_POST['model'];
-$km = $_POST['mileage'];
-$data_compra = $_POST['purchase_date'];
-$freio = $_POST['freio'];
-if(!empty($_POST['optional'])){
-    $opcionais = $_POST["optional"];
-    foreach($opcionais as $o => $op){
-        $op;
-    }
-}else{
-    $o = "Sem opcionais";   
-}
+    $titulo = $_POST['tittle'];
+    $preco = $_POST['price'];
+    $descricao = $_POST['description'];
+    $marca = $_POST['brand'];
+    $modelo = $_POST['model'];
+    $km = $_POST['mileage'];
+    $data_compra = $_POST['purchase_date'];
+    $freio = $_POST['freio'];
+    if(!empty($_POST['optional'])){
+        $opcionais = $_POST["optional"];
+        foreach($opcionais as $o){
+            $o;
+        }
+    }else
+        $o = "Sem opcionais";   
 
-$arquivo = $_FILES['arquivo'];    
-if($arquivo['error'])
-    $alert = "FALHA AO ENVIAR ARQUIVO";
-if($arquivo['size'] > 2097152)
-    $alert = "ARQUIVO MUITO GRANDE. MÁXIMO 2MB";
+    $arquivo = $_FILES['arquivo'];
+    $alert = '';
 
-$pasta = "arquivos/";
-$nomeDoArquivo = $arquivo['name'];
-$novoNomeDoArquivo = uniqid();
-$extensao = strtolower(pathinfo($nomeDoArquivo, PATHINFO_EXTENSION));
- 
-if($extensao === 'jpg' ){
-    //FUNÇÃO MOVEUPLOADEDFILE TRANSFORMA O NOME ATUAL DO ARQUIVO -> ($VARIAVEL['TMP_NAME'], PARA-> PASTA/NOVONOMEARQUIVO.EXTENSÃO )
-    $deu_certo = move_uploaded_file($arquivo['tmp_name'], $pasta . $novoNomeDoArquivo . "." . $extensao);
-    if($deu_certo)
-        echo "Arquivo enviado com sucesso. Para acessa-lo, <a href=\"arquivos/$novoNomeDoArquivo.$extensao\" >clique aqui </a>";
-        else
-            echo "Falha ao enviar arquivo.";
-}else{
-    echo "Tipo de arquivo não suportado.";
-}
+    if(empty($titulo) || strlen($titulo) > 30)
+        $alert = "TITULO OBRIGATÓRIO";
+    if(empty($preco))
+        $alert = "PREÇO OBRIGATÓRIO";
+    if(empty($descricao))
+        $descricao = "Não informada";
+    if(empty($marca))
+        $alert = "MARCA OBRIGATÓRIA";
+    if(empty($modelo))
+        $alert = "MODELO OBRIGATÓRIO";
+    if(empty($km))
+        $alert = "KILOMETRAGEM OBRIGATÓRIA";
+    if(empty($data_compra))
+        $alert = "DATA DE COMPRA OBRIGATÓRIA";
+    if(strlen($data_compra) > 10)
+        $alert = "DATA DE COMPRA DEVE SEGUIR O PADRÃO DIA/MÊS/ANO";
+    if(empty($freio))
+        $alert = "FREIO OBRIGATÓRIO";
+    if(!empty($freio) && strlen($freio) > 150)
+        $alert = "CAMPO COM CARACTERES ACIMA DO PERMITIDO";
+    if(empty($arquivo))
+        $alert = "IMAGENS OBRIGATÓRIAS";
 
+    if($arquivo['error'])
+        $alert ="FALHA AO ENVIAR ARQUIVO";
 
-$alert = '';
-if(empty($titulo) || strlen($titulo) > 30)
-    $alert = "TITULO OBRIGATÓRIO";
-if(empty($preco))
-    $alert = "PREÇO OBRIGATÓRIO";
-if(empty($descricao))
-    $descricao = "Não informada";
-if(empty($marca))
-    $alert = "MARCA OBRIGATÓRIA";
-if(empty($modelo))
-    $alert = "MODELO OBRIGATÓRIO";
-if(empty($km))
-    $alert = "KILOMETRAGEM OBRIGATÓRIA";
-if(empty($data_compra))
-    $alert = "DATA DE COMPRA OBRIGATÓRIA";
-if(strlen($data_compra) > 10)
-    $alert = "DATA DE COMPRA DEVE SEGUIR O PADRÃO DIA/MÊS/ANO";
-if(empty($freio))
-    $alert = "FREIO OBRIGATÓRIO";
-if(!empty($freio) && strlen($freio) > 150)
-    $alert = "CAMPO COM CARACTERES ACIMA DO PERMITIDO";
-if($alert){
-    }else{
+    if($arquivo['size'] > 2097152)
+        $alert = "ARQUIVO MUITO GRANDE. CAPACIDADE MÁXIMA 2MB";
+
+    if($alert){}
+
+    $pasta = "arquivos/";
+    $nomeDoArquivo = $arquivo['name'];
+    $novoNomeDoArquivo = uniqid();
+    $extensao = strtolower(pathinfo($nomeDoArquivo, PATHINFO_EXTENSION)); 
+    if($extensao != 'jpg')
+        die("TIPO DE ARQUIV NÃO SUPORTADO");
+
+    $path =  $pasta . $novoNomeDoArquivo . "." . $extensao;
+    $deu_certo = move_uploaded_file($arquivo['tmp_name'], $path);
+
+    if($deu_certo){
         $sql_code = "INSERT INTO informacoesmotocicleta
-            (titulo, preco, descricao, marca, modelo, data_compra, freio, km, data, opcionais) VALUES
-            ('$titulo','$preco','$descricao','$marca','$modelo', '$data_compra', '$freio', '$km', NOW(), '$op')";
+            (titulo,    preco,   descricao,   marca,    modelo, data_compra,    freio,      km, data, opcionais, path, nome_arquivo) VALUES
+            ('$titulo','$preco','$descricao','$marca','$modelo', '$data_compra', '$freio', '$km', NOW(), '$o', '$path', '$nomeDoArquivo')";
+
         $sql_query = $mysqli->query($sql_code);
         var_dump($o);
         if($sql_query)
             $alert = "DADOS INSERIDOS COM SUCESSO";
-        else
+        else{
             $alert = "ERRO AO INSERIR DADOS";
-    } 
-
+            var_dump(($sql_code));
+        } 
 }
-?> 
+}
+    ?> 
 <!DOCTYPE html>
 <html lang="en">
 <head>
