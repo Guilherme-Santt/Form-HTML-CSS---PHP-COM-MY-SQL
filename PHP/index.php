@@ -11,12 +11,10 @@ if(count($_POST) > 0){
     $freio = $_POST['freio'];
     if(!empty($_POST['optional'])){
         $opcionais = $_POST["optional"];
-        foreach($opcionais as $o){
-            $o;
-        }
+        $opcionaisstring = implode(", ", $opcionais);   
     }else
-        $o = "Sem opcionais";   
-
+        $opcionaisstring = "Sem opcionais";   
+    
     $arquivo = $_FILES['arquivo'];
     $alert = '';
 
@@ -64,10 +62,9 @@ if(count($_POST) > 0){
     if($deu_certo){
         $sql_code = "INSERT INTO informacoesmotocicleta
             (titulo,    preco,   descricao,   marca,    modelo, data_compra,    freio,      km, data, opcionais, path, nome_arquivo) VALUES
-            ('$titulo','$preco','$descricao','$marca','$modelo', '$data_compra', '$freio', '$km', NOW(), '$o', '$path', '$nomeDoArquivo')";
+            ('$titulo','$preco','$descricao','$marca','$modelo', '$data_compra', '$freio', '$km', NOW(), '$opcionaisstring', '$path', '$nomeDoArquivo')";
 
         $sql_query = $mysqli->query($sql_code);
-        var_dump($o);
         if($sql_query)
             $alert = "DADOS INSERIDOS COM SUCESSO";
         else{
