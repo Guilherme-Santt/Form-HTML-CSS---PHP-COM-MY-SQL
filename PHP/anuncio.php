@@ -9,7 +9,7 @@
 <table border="1" cellpadding="10">
     <thred>
         <tr>
-            <th></th>
+            <th>Previwes</th>
             <th>Titulo</th>
             <th>Preço</th>
             <th>Modelo</th>
@@ -35,7 +35,7 @@
     else{ 
         while($infos = $query_infos->fetch_assoc()) { ?>  
         <tr>
-            <td><img class="img_tbody" src="arquivos/<?php $infos['path']; ?>"></td>
+            <td><img class="img_tbody" src="./arquivos/<?php $infos['path']; ?>"></td>
             <td><?php $infos['preco'];  ?></td>
             <td><?php $info['modelo']; ?> </td>
             <td><?php $info['marca'];  ?></td>
