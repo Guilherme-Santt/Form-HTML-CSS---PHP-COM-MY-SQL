@@ -9,20 +9,39 @@ $modelo = $_POST['model'];
 $km = $_POST['mileage'];
 $data_compra = $_POST['purchase_date'];
 $freio = $_POST['freio'];
-
 if(!empty($_POST['optional'])){
-$opcionais = $_POST["optional"];
+    $opcionais = $_POST["optional"];
     foreach($opcionais as $o => $op){
         $op;
     }
-    }else{
-        $o = "Sem opcionais";   
-    }
-//$images = $_FILES['images']
-$alert = '';
+}else{
+    $o = "Sem opcionais";   
+}
 
-print_r($opcionais);
-print_r($op);
+$arquivo = $_FILES['arquivo'];    
+if($arquivo['error'])
+    $alert = "FALHA AO ENVIAR ARQUIVO";
+if($arquivo['size'] > 2097152)
+    $alert = "ARQUIVO MUITO GRANDE. MÁXIMO 2MB";
+
+$pasta = "arquivos/";
+$nomeDoArquivo = $arquivo['name'];
+$novoNomeDoArquivo = uniqid();
+$extensao = strtolower(pathinfo($nomeDoArquivo, PATHINFO_EXTENSION));
+ 
+if($extensao === 'jpg' ){
+    //FUNÇÃO MOVEUPLOADEDFILE TRANSFORMA O NOME ATUAL DO ARQUIVO -> ($VARIAVEL['TMP_NAME'], PARA-> PASTA/NOVONOMEARQUIVO.EXTENSÃO )
+    $deu_certo = move_uploaded_file($arquivo['tmp_name'], $pasta . $novoNomeDoArquivo . "." . $extensao);
+    if($deu_certo)
+        echo "Arquivo enviado com sucesso. Para acessa-lo, <a href=\"arquivos/$novoNomeDoArquivo.$extensao\" >clique aqui </a>";
+        else
+            echo "Falha ao enviar arquivo.";
+}else{
+    echo "Tipo de arquivo não suportado.";
+}
+
+
+$alert = '';
 if(empty($titulo) || strlen($titulo) > 30)
     $alert = "TITULO OBRIGATÓRIO";
 if(empty($preco))
@@ -56,7 +75,6 @@ if($alert){
             $alert = "ERRO AO INSERIR DADOS";
     } 
 
-
 }
 ?> 
 <!DOCTYPE html>
@@ -85,7 +103,7 @@ if($alert){
                 <p>
                     Descreva informações de sua motocicleta 
                 </p>
-                <form method="POST" action="">    
+                <form method="POST" enctype="multipart/form-data" action="">    
                     <!-- DIV INPUT TITULO -->
                     <div class="box-input">
                         <label for="Tittle">Anúncio <span class="required-filed">*</span></label>
@@ -266,9 +284,8 @@ if($alert){
                         <input 
                         type="file"
                         multiple 
-                        accept="image/png, image/jpg"
                         id="images"
-                        name="images"
+                        name="arquivo"
                         >
                     </div>
                         <input type="submit" class="btn-submit" value="Enviar" /> <br>
