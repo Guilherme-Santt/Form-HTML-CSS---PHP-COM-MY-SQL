@@ -66,14 +66,15 @@ if(count($_POST) > 0){
 
         $sql_query = $mysqli->query($sql_code);
         if($sql_query)
-            $alert = "DADOS INSERIDOS COM SUCESSO";
+            $alert = 'Inserido com sucesso. Para visualizar seu anuncio <a href="anuncio.ph">Clique aqui</a>';
         else{
             $alert = "ERRO AO INSERIR DADOS";
             var_dump(($sql_code));
         } 
     }
+
 }
-    ?> 
+?> 
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -82,6 +83,7 @@ if(count($_POST) > 0){
     <title>Anuncie seu veiculo</title>
 </head>
 <link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="../css/modal.css">
 <body>  
     <div class="container">
         <!-- DIVISÃO DO HEADER -->
@@ -96,6 +98,10 @@ if(count($_POST) > 0){
             </div>
             <!-- BODY DO FORMULÁRIO, TITULO & FORMULÁRIO -->
             <div class="form-body">
+                <?php
+                if(isset($alert))
+                    echo '<p style="color:red">' . $alert . '</p>';
+                ?>
                 <h1 class="form-tittle">Anuncie aqui sua motocicleta!</h1>
                 <p>
                     Descreva informações de sua motocicleta 
@@ -286,14 +292,9 @@ if(count($_POST) > 0){
                         >
                     </div>
                         <input type="submit" class="btn-submit" value="Enviar" /> <br>
-                        <?php
-                        if(isset($alert))
-                            echo '<p style="color:red">' . $alert . '</p>';
-                        ?>
                 </form>    
             </div>
         </div>
     </div>
-    
 </body>
 </html>
