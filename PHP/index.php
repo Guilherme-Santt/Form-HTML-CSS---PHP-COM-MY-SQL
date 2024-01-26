@@ -9,11 +9,11 @@ $modelo = $_POST['model'];
 $km = $_POST['mileage'];
 $data_compra = $_POST['purchase_date'];
 $freio = $_POST['freio'];
+
 if(!empty($_POST['optional'])){
-$opcionais = $_POST["optional"] ? $_POST['optional'] : array();
-    foreach($opcionais as $o){
-        $o;
-        
+$opcionais = $_POST["optional"];
+    foreach($opcionais as $o => $op){
+        $op;
     }
     }else{
         $o = "Sem opcionais";   
@@ -22,7 +22,7 @@ $opcionais = $_POST["optional"] ? $_POST['optional'] : array();
 $alert = '';
 
 print_r($opcionais);
-print_r($o);
+print_r($op);
 if(empty($titulo) || strlen($titulo) > 30)
     $alert = "TITULO OBRIGATÓRIO";
 if(empty($preco))
@@ -47,7 +47,7 @@ if($alert){
     }else{
         $sql_code = "INSERT INTO informacoesmotocicleta
             (titulo, preco, descricao, marca, modelo, data_compra, freio, km, data, opcionais) VALUES
-            ('$titulo','$preco','$descricao','$marca','$modelo', '$data_compra', '$freio', '$km', NOW(), '$o')";
+            ('$titulo','$preco','$descricao','$marca','$modelo', '$data_compra', '$freio', '$km', NOW(), '$op')";
         $sql_query = $mysqli->query($sql_code);
         var_dump($o);
         if($sql_query)
@@ -174,13 +174,13 @@ if($alert){
                     <!-- DIV INPUT TIPO DE CÂMBIO-->
                     <div class="box-input">
                         <p>Tipo do freio</p>
-                        <input type="radio" id="manual" name="freio" velue="Disco">
+                        <input type="radio" id="manual" name="freio" value="Disco">
                         <label for="manual">Disco</span></label>
 
-                        <input type="radio" id="auto" name="freio" velue="ABS">
+                        <input type="radio" id="auto" name="freio" value="ABS">
                         <label for="auto">ABS</span></label>
 
-                        <input type="radio" id="auto" name="freio" velue="Tambor">
+                        <input type="radio" id="auto" name="freio" value="Tambor">
                         <label for="auto">Tambor</span></label>
                     </div>
                     <!-- DIV CHECK BOX OPCIONAIS -->
