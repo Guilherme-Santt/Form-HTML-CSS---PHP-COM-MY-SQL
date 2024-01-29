@@ -125,11 +125,13 @@ textarea{
     border-color: #FF0000;;
     color:  #FF0000;
 }
-/* modal */
-.img_tbody{
-    width: 50px;
-    height: 50px;
+/* Anuncio */
+.img_anuncio{
+    width: 50%;
+    height: 600px;
 }
-.table{
-    font-size: 5px;
+/* BODY ANUNCIO */
+.form-body-anuncio p{
+    margin-top: 30px;
 }
+
