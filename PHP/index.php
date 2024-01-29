@@ -18,6 +18,8 @@ if(count($_POST) > 0){
     $arquivo = $_FILES['arquivo'];
     $alert = '';
 
+    $sucess = '';
+
     if(empty($titulo) || strlen($titulo) > 30)
         $alert = "TITULO OBRIGATÓRIO";
     if(empty($preco))
@@ -47,36 +49,38 @@ if(count($_POST) > 0){
     if($arquivo['size'] > 2097152)
         $alert = "ARQUIVO MUITO GRANDE. CAPACIDADE MÁXIMA 2MB";
 
-    if($alert){}
+    if($alert){
 
-    $pasta = "arquivos/";
-    $nomeDoArquivo = $arquivo['name'];
-    $novoNomeDoArquivo = uniqid();
-    $extensao = strtolower(pathinfo($nomeDoArquivo, PATHINFO_EXTENSION)); 
-    if($extensao === 'jpg' || $extensao === 'jpeg' || $extensao === 'png'){
-        $path =  $pasta . $novoNomeDoArquivo . "." . $extensao;
-        $deu_certo = move_uploaded_file($arquivo['tmp_name'], $path);
-        }else{
-            var_dump($extensao);
-            die("TIPO DE ARQUIVO NÃO SUPORTADO");
-        }
-    if($deu_certo){
-        $query = $mysqli->query("SELECT * FROM informacoesmotocicleta WHERE titulo = '$titulo' and path = '$path' lIMIT 1");
-        $consulta = $query->fetch_assoc();
+    }else{
+        $pasta = "arquivos/";
+        $nomeDoArquivo = $arquivo['name'];
+        $novoNomeDoArquivo = uniqid();
+        $extensao = strtolower(pathinfo($nomeDoArquivo, PATHINFO_EXTENSION)); 
+        if($extensao === 'jpg' || $extensao === 'jpeg' || $extensao === 'png'){
+            $path =  $pasta . $novoNomeDoArquivo . "." . $extensao;
+            $deu_certo = move_uploaded_file($arquivo['tmp_name'], $path);
+            }else{
+                $alert = "TIPO DE ARQUIVO NÃO SUPORTADO";
+            }
 
-        $sql_code = "INSERT INTO informacoesmotocicleta
+        if($deu_certo){
+            $sql_code = "INSERT INTO informacoesmotocicleta
             (titulo, preco, descricao, marca, modelo, data_compra, freio, km, data, opcionais, path, nome_arquivo) VALUES
             ('$titulo','$preco','$descricao','$marca','$modelo', '$data_compra', '$freio', '$km', NOW(), '$opcionaisstring', '$path', '$nomeDoArquivo')";
 
-        $sql_query = $mysqli->query($sql_code);
-        if($sql_query)
-            $alert = 'Inserido com sucesso. Para visualizar seu anuncio <a href="anuncio.php?id=' . $consulta['id'] . 'Clique aqui</a>';
-        else{
-            $alert = "ERRO AO INSERIR DADOS";
-            var_dump(($sql_code));
-        } 
-    }
+            $sql_query = $mysqli->query($sql_code);     
+            $query = $mysqli->query("SELECT * FROM informacoesmotocicleta WHERE titulo = '$titulo' and nome_arquivo = '$nomeDoArquivo'");
+            $consulta = $query->fetch_assoc();
+            $id_anuncio = $consulta['id'];
 
+            if($sql_query){
+                $sucess = 'Inserido com sucesso. Para visualizar seu anuncio acessar <a target="_blank" href="anuncio.php?id=' . $consulta['id'] .'">Clique aqui</a>';
+            }else{
+                $alert = "ERRO AO INSERIR DADOS";
+                var_dump(($sql_code));
+            } 
+        }
+    }
 }
 ?> 
 <!DOCTYPE html>
@@ -102,11 +106,11 @@ if(count($_POST) > 0){
             </div>
             <!-- BODY DO FORMULÁRIO, TITULO & FORMULÁRIO -->
             <div class="form-body">
-                <?php
-                if(isset($alert))
-                    echo '<p style="color:red">' . $alert . '</p>';
-                ?>
                 <h1 class="form-tittle">Anuncie aqui sua motocicleta!</h1>
+                <?php 
+                if(isset($sucess)) echo '<p style="color:green">' . $sucess . '</p>';
+                if(isset($alert)) echo '<p style="color:red">' . $alert . '</p>';
+                ?>
                 <p>
                     Descreva informações de sua motocicleta 
                 </p>
