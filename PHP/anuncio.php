@@ -11,7 +11,7 @@ $data = $infos['data_compra'];
 // FUNÇÃO FORMATAR DATA AMERICAN PARA PADRÃO BR
 function formatar_data($data){
     return implode('/', array_reverse(explode('-', $data)));
-};
+}
 // ALTERANDO PADRÃO DATA COM FUNÇÃO NATIVA DO PHP DATE
 $data_anuncio = date("d/m/y H:i:s", strtotime($infos['data']));    
 ?>
@@ -24,7 +24,7 @@ $data_anuncio = date("d/m/y H:i:s", strtotime($infos['data']));
 </head>
 <link rel="stylesheet" href="../css/style.css">
 <body>
-<div class="container">
+    <div class="container">
         <!-- DIVISÃO DO HEADER -->
         <div class="header">
             <h3>Este é o seu anuncio</h3>
