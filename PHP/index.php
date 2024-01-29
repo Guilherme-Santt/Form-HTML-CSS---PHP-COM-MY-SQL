@@ -60,13 +60,16 @@ if(count($_POST) > 0){
     $deu_certo = move_uploaded_file($arquivo['tmp_name'], $path);
 
     if($deu_certo){
+        $query = $mysqli->query("SELECT * FROM informacoesmotocicleta WHERE titulo = '$titulo' and path = '$path' lIMIT 1");
+        $consulta = $query->fetch_assoc();
+
         $sql_code = "INSERT INTO informacoesmotocicleta
             (titulo, preco, descricao, marca, modelo, data_compra, freio, km, data, opcionais, path, nome_arquivo) VALUES
             ('$titulo','$preco','$descricao','$marca','$modelo', '$data_compra', '$freio', '$km', NOW(), '$opcionaisstring', '$path', '$nomeDoArquivo')";
 
         $sql_query = $mysqli->query($sql_code);
         if($sql_query)
-            $alert = 'Inserido com sucesso. Para visualizar seu anuncio <a href="anuncio.ph">Clique aqui</a>';
+            $alert = 'Inserido com sucesso. Para visualizar seu anuncio <a href="anuncio.php?id=' . $consulta['id'] . 'Clique aqui</a>';
         else{
             $alert = "ERRO AO INSERIR DADOS";
             var_dump(($sql_code));
