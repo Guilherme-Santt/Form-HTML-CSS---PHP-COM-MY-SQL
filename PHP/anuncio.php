@@ -25,6 +25,7 @@ include('conexao/conexao.php');
         <!-- DIVISÃO DO HEADER -->
         <div class="header">
             <h3>Este é o seu anuncio</h3>
+            <a href="index.php">Retornar</a>
         </div>
         <!-- DIVISÃO DO CONTAINER -> ANUNCIO -->
         <div class="form-container">
