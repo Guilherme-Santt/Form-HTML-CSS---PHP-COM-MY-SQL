@@ -1,16 +1,19 @@
 <?php
+$id = intval($_GET['id']);
+
 include('conexao/conexao.php');
-    $sql_code = "SELECT * FROM informacoesmotocicleta";
-    $query_infos = $mysqli->query($sql_code);    
-    $contagem = $query_infos->num_rows;
-    $infos = $query_infos->fetch_assoc();
-    $data = $infos['data_compra'];
-    // FUNÇÃO FORMATAR DATA AMERICAN PARA PADRÃO BR
-    function formatar_data($data){
-        return implode('/', array_reverse(explode('-', $data)));
-    };
-    // ALTERANDO PADRÃO DATA COM FUNÇÃO NATIVA DO PHP DATE
-    $data_anuncio = date("d/m/y H:i:s", strtotime($infos['data']));    
+$sql_code = "SELECT * FROM informacoesmotocicleta WHERE id = '$id'";
+$query_infos = $mysqli->query($sql_code);    
+$contagem = $query_infos->num_rows;
+$infos = $query_infos->fetch_assoc();
+
+$data = $infos['data_compra'];
+// FUNÇÃO FORMATAR DATA AMERICAN PARA PADRÃO BR
+function formatar_data($data){
+    return implode('/', array_reverse(explode('-', $data)));
+};
+// ALTERANDO PADRÃO DATA COM FUNÇÃO NATIVA DO PHP DATE
+$data_anuncio = date("d/m/y H:i:s", strtotime($infos['data']));    
 ?>
 <!DOCTYPE html>
 <html lang="en">

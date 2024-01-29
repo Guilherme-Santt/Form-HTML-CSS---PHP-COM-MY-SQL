@@ -53,12 +53,13 @@ if(count($_POST) > 0){
     $nomeDoArquivo = $arquivo['name'];
     $novoNomeDoArquivo = uniqid();
     $extensao = strtolower(pathinfo($nomeDoArquivo, PATHINFO_EXTENSION)); 
-    if($extensao != 'jpg')
-        die("TIPO DE ARQUIVO NÃO SUPORTADO");
-
-    $path =  $pasta . $novoNomeDoArquivo . "." . $extensao;
-    $deu_certo = move_uploaded_file($arquivo['tmp_name'], $path);
-
+    if($extensao === 'jpg' || $extensao === 'jpeg' || $extensao === 'png'){
+        $path =  $pasta . $novoNomeDoArquivo . "." . $extensao;
+        $deu_certo = move_uploaded_file($arquivo['tmp_name'], $path);
+        }else{
+            var_dump($extensao);
+            die("TIPO DE ARQUIVO NÃO SUPORTADO");
+        }
     if($deu_certo){
         $query = $mysqli->query("SELECT * FROM informacoesmotocicleta WHERE titulo = '$titulo' and path = '$path' lIMIT 1");
         $consulta = $query->fetch_assoc();
